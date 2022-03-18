@@ -1,0 +1,51 @@
+<div class="body">
+    <div class="text-center">
+        <button type="button" (click)="loginUserViewer()" class="btn btn-danger w-25 log">Connectez-vous en tant que visiteur</button>
+    </div>
+    <div class="blurred-box">
+        <div class="user-login-box">
+            <form>
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">E-mail</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputEmail" #email>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Mot de passe</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword" #password>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="selType" class="col-sm-2 col-form-label">Sélectionnez le taper</label>
+                    <select name="selType" id="selType" #Type>
+                    <option value="admin">Administrateur</option>
+                    <option value="agency">Agence</option>
+                    <option value="client">Client</option>
+                    <option value="maintenancemanager">Responsable maintenance</option>
+                </select>
+                </div>
+
+                <div class="row form-inline">
+                    <input class="col-1"
+                      type="checkbox"
+                      id="inlineFormCheck"
+                      #isRemberMeChecked
+                      (click)="checkRemember()"
+                    />
+                    <label for="inlineFormCheck">
+                        Souviens-toi de moi
+                    </label>
+                  </div>
+                <div class="sendBTN">
+                    <button type="button" (click)="loginUser()" class="btn btn-outline-dark send">Soumettre</button>
+                </div>
+                <p class="forget">Mot de passe oublié?</p>
+            </form>
+        </div>
+
+    </div>
+</div>

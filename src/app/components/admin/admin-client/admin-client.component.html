@@ -1,0 +1,119 @@
+<div>
+    <app-admin-navbar></app-admin-navbar>
+    <br><br><br>
+    <div class="navbar navbar-dark bg-dark">
+        <ul class="mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="getConfirmed()">Liste réservée confirmée</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getNotConfirmed()">Liste réservée non confirmée</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="searchClients()">Rechercher un client</a>
+            </li>
+        </ul>
+    </div>
+    <div id="listVehicles" #listVehicles>
+        <div class="table-responsive table-dark">
+            <table class="table table-hover" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Voiture Image</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">Date de fin</th>
+                        <th scope="col">Taper</th>
+                        <th scope="col">créer à</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of rentalList;let indexOfelement=index;">
+                        <th scope="row" *ngIf="item.confirmed">{{indexOfelement+1}}</th>
+                        <td *ngIf="item.confirmed"><small>{{item?.name}}</small></td>
+                        <td *ngIf="item.confirmed"><img [src]="item?.car_image" width="50px" height="50px" alt="notFoundImage"/></td>
+                        <td *ngIf="item.confirmed"><small>{{item?.startdate}}</small></td>
+                        <td *ngIf="item.confirmed"><small>{{item?.enddate}}</small></td>
+                        <td *ngIf="item.confirmed"><small>{{item?.typerental}}</small></td>
+                        <td *ngIf="item.confirmed"><small>{{item?.create_at}}</small></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="addVehicles" #addVehicles>
+        <div class="table-responsive table-dark">
+            <table class="table table-hover" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Voiture Image</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">Date de fin</th>
+                        <th scope="col">Taper</th>
+                        <th scope="col">créer à</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of rentalList;let indexOfelement=index;">
+                        <th scope="row" *ngIf="!item.confirmed">{{indexOfelement+1}}</th>
+                        <td *ngIf="!item.confirmed"><small>{{item?.name}}</small></td>
+                        <td *ngIf="!item.confirmed"><img [src]="item?.car_image" width="50px" height="50px" alt="notFoundImage"/></td>
+                        <td *ngIf="!item.confirmed"><small>{{item?.startdate}}</small></td>
+                        <td *ngIf="!item.confirmed"><small>{{item?.enddate}}</small></td>
+                        <td *ngIf="!item.confirmed"><small>{{item?.typerental}}</small></td>
+                        <td *ngIf="!item.confirmed"><small>{{item?.create_at}}</small></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="searcVehicles" #searcVehicles>
+        <div class="row m-4">
+            <div class="col">
+                <div class="form-group">
+                    <label for="searchById">Recherche par nom du client</label><br>
+                    <input type="text" class="mx-4 w-50" id="searchById" name="searchById" placeholder="Enter Client's Name" #searchId>
+                    <i class="fas fa-search" (click)="searchByName()"></i>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="searchByBrandd">Recherche par CIN du client</label><br>
+                    <input type="text" class="mx-4 w-50" id="searchByBrandd" name="searchByBrandd" placeholder="Enter Client's CIN" #searchByBrandd>
+                    <i class="fas fa-search" (click)="searchByCIN()"></i>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="table-responsive">
+                <table class="table table-hover table-dark" id="data">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Taper</th>
+                            <th scope="col">Adresse</th>
+                            <th scope="col">Contacter</th>
+                            <th scope="col">CIN</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of client;" id="trSearch">
+                            <th scope="row">{{item?.id}}</th>
+                            <td><small>{{item?.name}}</small></td>
+                            <td><small>{{item?.email}}</small></td>
+                            <td><small>{{item?.type}}</small></td>
+                            <td><small>{{item?.address}}</small></td>
+                            <td><small>{{item?.contact}}</small></td>
+                            <td><small>{{item?.cin}}</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

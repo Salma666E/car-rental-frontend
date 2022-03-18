@@ -1,0 +1,128 @@
+<div>
+    <app-agency-navbar></app-agency-navbar>
+    <br><br><br>
+    <div class="text-center">
+        <button type="button" class="btn btn-dark dark my-4" data-toggle="modal"
+            data-target="#exampleModalLong">Rédiger une nouvelle facture</button>
+    </div>
+    <h1 class="my-4 text-center" [hidden]="flage">Aucune facture pour vous!!</h1>
+    <table class="table table-dark" [hidden]="!flage">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Numéro</th>
+                <th scope="col">Client Nom</th>
+                <th scope="col">Client E-mail</th>
+                <th scope="col">Réservation Numéro</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Prix ​​total</th>
+                <th scope="col">Plus de détails</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of invoiceList;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item?.number}}</td>
+                <td>{{item?.name_client}}</td>
+                <td>{{item?.email_client}}</td>
+                <td>{{item?.reservation_number}}</td>
+                <td>{{item?.address}}</td>
+                <td>{{item?.total_amount}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="showDetails(item?.id)">Plus d'info. && Imprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Entrez les données requises pour la facture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- ... -->
+                <div class="container text-justify" dir="auto">
+                    <form #frm="ngForm" (ngSubmit)="addInvoice()">
+                        <div class="form-group">
+                            <label for="invoiceNumber">Numéro:</label>
+                            <input type="text" class="form-control" id="invoiceNumber" minlength="2" name="Name" #NumberEle>
+                        </div>
+                        <div class="form-group">
+                            <label for="invoiceDate">Date:</label>
+                            <input type="text" class="form-control" id="invoiceDate" minlength="2" name="Date" #DateEle>
+                        </div>
+                        <div class="form-group">
+                            <label for="invoiceNameClient">NomClient:</label>
+                            <input type="text" class="form-control" id="invoiceNameClient" minlength="2" #NameClient>
+                        </div>
+                        <div class="form-group">
+                            <label for="EmailClient">EmailClient:</label>
+                            <input type="text" class="form-control" id="EmailClient" minlength="2" name="EmailClient" #EmailClient>
+                        </div>
+                        <!--  -->
+                        <div class="form-group">
+                            <label for="Address">Adresse:</label>
+                            <input type="text" class="form-control" id="Address" minlength="2" name="Address" #Address>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation_number">Numéro de réservation:</label>
+                            <input type="text" class="form-control" id="reservation_number" minlength="2" name="reservation_number" #reservation_number>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation_duration">Durée de la réservation:</label>
+                            <input type="text" class="form-control" id="reservation_duration" minlength="2" name="reservation_duration" #reservation_duration>
+                        </div>
+                        <div class="form-group">
+                            <label for="car_brand">Marque de voiture:</label>
+                            <input type="text" class="form-control" id="car_brand" minlength="2" name="car_brand" #car_brand>
+                        </div>
+                        <div class="form-group">
+                            <label for="car_num_plate">Plaque d'immatriculation de voiture:</label>
+                            <input type="text" class="form-control" id="car_num_plate" minlength="2" name="car_num_plate" #car_num_plate>
+                        </div>
+                        <div class="form-group">
+                            <label for="rantal_price">Prix:</label>
+                            <input type="text" class="form-control" id="rantal_price" minlength="2" name="rantal_price" #rantal_price>
+                        </div>
+                        <div class="form-group">
+                            <label for="equipment_price">Prix ​​de l'équipement:</label>
+                            <input type="text" class="form-control" id="equipment_price" minlength="2" name="equipment_price" #equipment_price>
+                        </div>
+                        <div class="form-group">
+                            <label for="pay_within_day">Payez_en_un_jour:</label>
+                            <input type="text" class="form-control" id="pay_within_day" minlength="2" name="pay_within_day" #pay_within_day>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_details">Coordonnées bancaires:</label>
+                            <input type="text" class="form-control" id="bank_details" minlength="2" name="bank_details" #bank_details>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_name">Nom de banque:</label>
+                            <input type="text" class="form-control" id="bank_name" minlength="2" name="bank_name" #bank_name>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_teller">Caissier de banque:</label>
+                            <input type="text" class="form-control" id="bank_teller" minlength="2" name="bank_teller" #bank_teller>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_key">Clé de banque:</label>
+                            <input type="text" class="form-control" id="bank_key" minlength="2" name="bank_key" #bank_key>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-dark w-25" [disabled]="frm.invalid" type="submit">Sauvegarder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

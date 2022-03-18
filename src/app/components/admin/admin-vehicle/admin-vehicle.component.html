@@ -1,0 +1,334 @@
+<div>
+    <app-admin-navbar></app-admin-navbar>
+    <br><br><br>
+    <div class="navbar navbar-dark bg-dark">
+        <ul class="mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="getVehicles()">Liste des véhicules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="createVehicles()">Ajouter un nouveau véhicule</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="searchVehicles()">Rechercher un véhicule</a>
+            </li>
+        </ul>
+    </div>
+    <div id="listVehicles" #listVehicles>
+        <div class="table-responsive">
+            <table class="table table-hover" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Modèle</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Marqué</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Numéro_de_la plaque</th>
+                        <th scope="col">Disponible</th>
+                        <th scope="col">Taux</th>
+                        <th scope="col">Identify_num</th>
+                        <th scope="col">Date_première_diffusion</th>
+                        <th scope="col">Numéro_décomposé</th>
+                        <th scope="col">Joueur_CD</th>
+                        <th scope="col">Capacité</th>
+                        <th scope="col">Siège d'enfant</th>
+                        <th scope="col">Gps</th>
+                        <th scope="col">Airbag</th>
+                        <th scope="col">Climatisation</th>
+                        <th scope="col">Porte-skis</th>
+                        <th scope="col">Siège bébé</th>
+                        <th scope="col">Réglage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of vehicleList;">
+                        <th scope="row">#{{item.id}}</th>
+                        <td><img [src]="item?.car_image" width="50px" height="50px" alt="notFoundImage"/></td>
+                        <td><small>{{item?.description}}</small></td>
+                        <td><small>{{item?.car_model}}</small></td>
+                        <td><small>{{item?.car_brand}}</small></td>
+                        <td><small>{{item?.category}}</small></td>
+                        <td><small>{{item?.price}}</small></td>
+                        <td><small>{{item?.marked}}</small></td>
+                        <td><small>{{item?.version}}</small></td>
+                        <td><small>{{item?.plate_number}}</small></td>
+                        <td><small>{{item?.available_num}}</small></td>
+                        <td><small>{{item?.rate}}</small></td>
+                        <td><small>{{item?.identify_num}}</small></td>
+                        <td><small>{{item?.date_first_circulation}}</small></td>
+                        <td><small>{{item?.broken_down_num}}</small></td>
+                        <td><small>{{item?.cd_player_price}}</small></td>
+                        <td><small>{{item?.capacity}}</small></td>
+                        <td><small>{{item?.child_seat_price}}</small></td>
+                        <td><small>{{item?.gps_price}}</small></td>
+                        <td><small>{{item?.airbag_price}}</small></td>
+                        <td><small>{{item?.air_conditioning_price}}</small></td>
+                        <td><small>{{item?.ski_rack}}</small></td>
+                        <td><small>{{item?.baby_seat_price}}</small></td>
+                        <td><i class="fa fa-trash mx-2" aria-hidden="true" (click)="deleteVec(item?.id)"></i>
+                            <i class="fas fa-edit" aria-hidden="true" (click)="goToEdit(item?.id)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="addVehicles" #addVehicles>
+        <div class="container m-4 text-justify" dir="auto">
+            <form #frm="ngForm" (ngSubmit)="addVehicle()">
+                <div class="form-group">
+                    <label for="carModel">Modèle</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #carModel="ngModel"
+                        [class.is-invalid]="carModel.invalid && carModel.touched" [(ngModel)]="newVehicle.car_model"
+                        id="carModel" minlength="2" name="Name" [class.is-valid]="carModel.valid" #car_model>
+                </div>
+                <div class="form-group">
+                    <label for="carBrand">Marque</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #carBrand="ngModel"
+                        [class.is-invalid]="carBrand.invalid && carBrand.touched" [(ngModel)]="newVehicle.car_brand"
+                        id="carBrand" minlength="2" name="Brand" [class.is-valid]="carBrand.valid" #car_brand>
+                </div>
+                <div class="form-group">
+                    <label for="carPlate_number">Numéro de la plaque</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId"
+                        #carPlate_number="ngModel"
+                        [class.is-invalid]="carPlate_number.invalid && carPlate_number.touched"
+                        [(ngModel)]="newVehicle.plate_number" id="carPlate_number" minlength="2" name="carPlate_number"
+                        [class.is-valid]="carPlate_number.valid" #plate_number>
+                </div>
+                <div class="form-group">
+                    <label for="carbooking_num">Numéro de réservation</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carbooking_num="ngModel" [class.is-invalid]="carbooking_num.invalid && carbooking_num.touched"
+                        [(ngModel)]="newVehicle.booking_num" id="carbooking_num" minlength="2" name="booking_num"
+                        [class.is-valid]="carbooking_num.valid" #booking_num>
+                </div>
+                <div class="form-group">
+                    <label for="car_image">Image</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_image="ngModel"
+                        [class.is-invalid]="car_image.invalid && car_image.touched" [(ngModel)]="newVehicle.car_image"
+                        id="car_image" minlength="2" name="car_image" [class.is-valid]="car_image.valid" #car_images>
+                </div>
+                <div class="form-group">
+                    <label for="caravailable_num">Numéro disponible</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #caravailable_num="ngModel"
+                        [class.is-invalid]="caravailable_num.invalid && caravailable_num.touched"
+                        [(ngModel)]="newVehicle.available_num" id="caravailable_num" minlength="2" name="available_num"
+                        [class.is-valid]="caravailable_num.valid" #available_num>
+                </div>
+                <div class="form-group">
+                    <label for="carbroken_down_num">Numéro BrokenDown</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carbroken_down_num="ngModel"
+                        [class.is-invalid]="carbroken_down_num.invalid && carbroken_down_num.touched"
+                        [(ngModel)]="newVehicle.broken_down_num" id="carbroken_down_num" minlength="2"
+                        name="broken_down_num" [class.is-valid]="carbroken_down_num.valid" #broken_down_num>
+                </div>
+                <div class="form-group">
+                    <label for="car_marked">Marqué</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_marked="ngModel"
+                        [class.is-invalid]="car_marked.invalid && car_marked.touched" [(ngModel)]="newVehicle.marked"
+                        id="car_marked" minlength="2" name="car_marked" [class.is-valid]="car_marked.valid" #marked>
+                </div>
+                <div class="form-group">
+                    <label for="car_version">Version</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_version="ngModel"
+                        [class.is-invalid]="car_version.invalid && car_version.touched" [(ngModel)]="newVehicle.version"
+                        id="car_version" minlength="2" name="car_version" [class.is-valid]="car_version.valid" #version>
+                </div>
+                <div class="form-group">
+                    <label for="inputState">Catégorie</label>
+                    <select id="inputState" class="form-control" [(ngModel)]="newVehicle.category"
+                    #car_category="ngModel" name="car_category" #category>
+                      <option *ngFor="let item of categoryList;">{{item?.name}}</option>
+                    </select>
+                  </div>
+                <!-- <div class="form-group">
+                    <label for="car_category">Category</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_category="ngModel"
+                        [class.is-invalid]="car_category.invalid && car_category.touched"
+                        [(ngModel)]="newVehicle.name" id="car_category" minlength="2" name="car_category"
+                        [class.is-valid]="car_category.valid" #category>
+                </div> -->
+                <div class="form-group">
+                    <label for="start">Date de la première diffusion</label>
+                    <input type="date" id="start" name="trip-start" #start="ngModel" class="form-control"
+                        [(ngModel)]="newVehicle.date_first_circulation" value="2020-07-22" #date_first_circulation
+                        min="1999-01-01" max="2022-12-31">
+                </div>
+                <div class="form-group">
+                    <label for="car_identify_num">Identifier le numéro</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_identify_num="ngModel"
+                        [class.is-invalid]="car_identify_num.invalid && car_identify_num.touched" [(ngModel)]="newVehicle.identify_num"
+                        id="car_identify_num" minlength="2" name="car_identify_num" [class.is-valid]="car_identify_num.valid" #identify_num>
+                </div>
+                <div class="form-group">
+                    <label for="car_description">Description</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_description="ngModel"
+                        [class.is-invalid]="car_description.invalid && car_description.touched" [(ngModel)]="newVehicle.description"
+                        id="car_description" minlength="2" name="car_description" [class.is-valid]="car_description.valid" #description>
+                </div>
+                <div class="form-group">
+                    <label for="car_capacity">Capacité</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_capacity="ngModel"
+                        [class.is-invalid]="car_capacity.invalid && car_capacity.touched" [(ngModel)]="newVehicle.capacity"
+                        id="car_capacity" minlength="2" name="car_capacity" [class.is-valid]="car_capacity.valid" #capacity>
+                </div>
+                <div class="form-group">
+                    <label for="car_price">Prix</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_price="ngModel"
+                        [class.is-invalid]="car_price.invalid && car_price.touched" [(ngModel)]="newVehicle.price"
+                        id="car_price" minlength="2" name="car_price" [class.is-valid]="car_price.valid" #price>
+                </div>
+                <div class="form-group">
+                    <label for="car_rate">Taux</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #car_rate="ngModel"
+                        [class.is-invalid]="car_rate.invalid && car_rate.touched" [(ngModel)]="newVehicle.rate"
+                        id="car_rate" minlength="2" name="car_rate" [class.is-valid]="car_rate.valid" #rate>
+                </div>
+                <div class="form-group">
+                    <label for="cargps_price">Numéro de prix GPS</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #cargps_price="ngModel"
+                        [class.is-invalid]="cargps_price.invalid && cargps_price.touched"
+                        [(ngModel)]="newVehicle.gps_price" id="cargps_price" minlength="2" name="gps_price"
+                        [class.is-valid]="cargps_price.valid" #gps_price>
+                </div>
+                <div class="form-group">
+                    <label for="carairbag_price">Numéro de prix AirBag</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carairbag_price="ngModel"
+                        [class.is-invalid]="carairbag_price.invalid && carairbag_price.touched"
+                        [(ngModel)]="newVehicle.airbag_price" id="carairbag_price" minlength="2" name="airbag_price"
+                        [class.is-valid]="carairbag_price.valid" #airbag_price>
+                </div>
+                <div class="form-group">
+                    <label for="carair_conditioning_price">Numéro de prix de la climatisation</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carair_conditioning_price="ngModel"
+                        [class.is-invalid]="carair_conditioning_price.invalid && carair_conditioning_price.touched"
+                        [(ngModel)]="newVehicle.air_conditioning_price" id="carair_conditioning_price" minlength="2" name="air_conditioning_price"
+                        [class.is-valid]="carair_conditioning_price.valid" #air_conditioning_price>
+                </div>
+                <div class="form-group">
+                    <label for="carchild_seat_price">Numéro de prix du siège enfant</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carchild_seat_price="ngModel"
+                        [class.is-invalid]="carchild_seat_price.invalid && carchild_seat_price.touched"
+                        [(ngModel)]="newVehicle.child_seat_price" id="carchild_seat_price" minlength="2" name="child_seat_price"
+                        [class.is-valid]="carchild_seat_price.valid" #child_seat_price>
+                </div>
+                <div class="form-group">
+                    <label for="carcd_player_price">Numéro de prix du joueur CD</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carcd_player_price="ngModel"
+                        [class.is-invalid]="carcd_player_price.invalid && carcd_player_price.touched"
+                        [(ngModel)]="newVehicle.cd_player_price" id="carcd_player_price" minlength="2" name="cd_player_price"
+                        [class.is-valid]="carcd_player_price.valid" #cd_player_price>
+                </div>
+                <div class="form-group">
+                    <label for="carbaby_seat_price">Numéro de prix du siège bébé</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carbaby_seat_price="ngModel"
+                        [class.is-invalid]="carbaby_seat_price.invalid && carbaby_seat_price.touched"
+                        [(ngModel)]="newVehicle.baby_seat_price" id="carbaby_seat_price" minlength="2" name="baby_seat_price"
+                        [class.is-valid]="carbaby_seat_price.valid" #baby_seat_price>
+                </div>
+                <div class="form-group">
+                    <label for="carski_rack">Numéro de porte-skis</label>
+                    <input type="number" required class="form-control" aria-describedby="helpId"
+                        #carski_rack="ngModel"
+                        [class.is-invalid]="carski_rack.invalid && carski_rack.touched"
+                        [(ngModel)]="newVehicle.ski_rack" id="carski_rack" minlength="2" name="ski_rack"
+                        [class.is-valid]="carski_rack.valid" #ski_rack>
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-dark" [disabled]="frm.invalid" type="submit">Ajouter un nouveau véhicule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="searcVehicles" #searcVehicles>
+        <div class="row m-4">
+            <div class="col">
+                <div class="form-group">
+                    <label for="searchById">Recherche par ID de véhicule</label><br>
+                    <input type="number" class="mx-4 w-50" id="searchById" name="searchById" placeholder="Enter Vehicle's Id" #searchId>
+                    <i class="fas fa-search" (click)="searchById()"></i>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="searchByBrandd">Recherche par marque de véhicule</label><br>
+                    <input type="text" class="mx-4 w-50" id="searchByBrandd" name="searchByBrandd" placeholder="Enter Vehicle's Brand" #searchByBrandd>
+                    <i class="fas fa-search" (click)="searchByBrand()"></i>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="table-responsive">
+                <table class="table table-hover" id="data">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Modèle</th>
+                            <th scope="col">Marque</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Marqué</th>
+                            <th scope="col">Version</th>
+                            <th scope="col">Numéro_de_la plaque</th>
+                            <th scope="col">Disponible</th>
+                            <th scope="col">Taux</th>
+                            <th scope="col">Identify_num</th>
+                            <th scope="col">Date_première_diffusion</th>
+                            <th scope="col">Numéro_décomposé</th>
+                            <th scope="col">Joueur_CD</th>
+                            <th scope="col">Capacité</th>
+                            <th scope="col">Siège d'enfant</th>
+                            <th scope="col">Gps</th>
+                            <th scope="col">Airbag</th>
+                            <th scope="col">Climatisation</th>
+                            <th scope="col">Porte-skis</th>
+                            <th scope="col">Siège bébé</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of vehicle;" id="trSearch">
+                            <th scope="row">#{{item.id}}</th>
+                            <td><img [src]="item?.car_image" width="50px" height="50px" alt="notFoundImage"/></td>
+                            <td><small>{{item?.description}}</small></td>
+                            <td><small>{{item?.car_model}}</small></td>
+                            <td><small>{{item?.car_brand}}</small></td>
+                            <td><small>{{item?.category}}</small></td>
+                            <td><small>{{item?.price}}</small></td>
+                            <td><small>{{item?.marked}}</small></td>
+                            <td><small>{{item?.version}}</small></td>
+                            <td><small>{{item?.plate_number}}</small></td>
+                            <td><small>{{item?.available_num}}</small></td>
+                            <td><small>{{item?.rate}}</small></td>
+                            <td><small>{{item?.identify_num}}</small></td>
+                            <td><small>{{item?.date_first_circulation}}</small></td>
+                            <td><small>{{item?.broken_down_num}}</small></td>
+                            <td><small>{{item?.cd_player_price}}</small></td>
+                            <td><small>{{item?.capacity}}</small></td>
+                            <td><small>{{item?.child_seat_price}}</small></td>
+                            <td><small>{{item?.gps_price}}</small></td>
+                            <td><small>{{item?.airbag_price}}</small></td>
+                            <td><small>{{item?.air_conditioning_price}}</small></td>
+                            <td><small>{{item?.ski_rack}}</small></td>
+                            <td><small>{{item?.baby_seat_price}}</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

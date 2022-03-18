@@ -1,0 +1,38 @@
+<div>
+    <app-navbar-client></app-navbar-client>
+    <div class="container head">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <input readonly type="name" class="form-control" id="exampleInputName" [value]="name">
+                    </div>
+                    <div class="form-group">
+                        <input readonly type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" [value]="email">
+                    </div>
+                    <div class="form-group">
+                        <h4>Ecrivez votre message ici: </h4>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" aria-label="With textarea" #msg></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-lg btn-block" (click)="addMail()">Soumettre</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h5>Adresse: <small class="text-muted">Venkatadri IT Park, HP Avenue, Konnappana, Electronic city,
+                        Bengaluru, Karnataka 560069</small></h5>
+                <h5>Email: <small class="text-muted">hire@luxurytaxicab.com</small></h5>
+                <h5>Contacter: <small class="text-muted">+91 98765 10278 || +91 76589 14244</small></h5>
+                <div class="text-center">
+                    <img class="img-fluid contact-image" width="100%" height="300" alt="Responsive image"
+                        src="https://csds.qld.edu.au/sdc/resources/images/find-us-map.jpg" class="rounded" alt="...">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

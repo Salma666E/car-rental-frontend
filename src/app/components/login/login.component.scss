@@ -1,0 +1,127 @@
+
+*{
+    margin: 0;
+    padding: 0;
+   }
+
+   label{
+       color: white;
+       text-align:left;
+       padding-left: 18px;
+    }
+   input{
+       text-align:left;
+    padding-left: 16px;
+    font-weight: 400;
+    border: none;
+    color: white;
+    background-color: black;
+    width: 350px;
+}
+.log{margin-top: 60px;}
+   /* CSS which you need for blurred box */
+   .body{
+       overflow: hidden;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image: url(https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364);
+    width: 100vw;
+    height: 100vh;
+    font-family: Arial, Helvetica;
+    letter-spacing: 0.02em;
+     font-weight: 400;
+    -webkit-font-smoothing: antialiased; 
+   }
+   
+   .blurred-box{
+       padding-top: 12px;
+     position: relative;
+     width: 700px;
+     height: 310px;
+     top: calc(50% - 220px);
+     left: calc(50% - 300px);
+     background: inherit;
+     border-radius: 8px;
+     overflow: hidden;
+   }
+   
+   .blurred-box:after{
+    content: '';
+    width: 700px;
+    // height: 300px;
+    background: inherit; 
+    position: absolute;
+    left: -25px;
+    // left: position;
+    right: 0;
+    top: -25px;  
+    // top position 
+    bottom: 0;
+    box-shadow: inset 0 0 0 200px rgba(255,255,255,0.05);
+    filter: blur(10px);
+   }
+   
+   
+   /* Form which you dont need */
+   .user-login-box{
+     position: relative;
+     margin-top: 30px;
+     text-align: center;
+     z-index: 1;
+   }
+   .user-login-box > *{
+     display: inline-block;
+    //  width: 800px;
+   }
+
+   .send{
+       margin-right: 48%;
+       margin-top: 20px;
+       padding-left: 16px;
+       padding-right: 16px;
+       font-weight: bold;
+       padding-top: 5px;
+       color: white;
+       padding-bottom: 5px;
+       border-radius: 10px;
+       border-width: 2px;
+   }
+   
+   .user-name{
+     margin-top: 15px;
+     margin-bottom: 15px;
+     color: white;
+   }
+   .form-group{
+     width: 1200px;
+
+   }
+   input.user-password{
+     width: 120px;
+     height: 18px;
+     opacity: 0.4;
+     border-radius: 2px;
+     padding: 5px 15px;
+     border: 0;
+   }
+   .form-inline{
+    margin-top: 12px;
+   }
+   .form-inline input{
+    margin-left: 14%;
+    margin-right: 0 !important;
+}
+// select{text-align: right !important;margin-right: 0 !important;}
+.form-inline label{
+    margin: 0 !important;
+    text-align: left;
+}
+   .forget{
+    text-align: right;
+    margin-right: 50%;
+    color: white;
+    cursor: pointer;
+   }
+   

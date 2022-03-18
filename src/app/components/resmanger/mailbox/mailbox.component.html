@@ -1,0 +1,53 @@
+<div>
+    <app-navbar-resmanager></app-navbar-resmanager>
+    <br><br><br>
+    <div class="container mt-4">
+    <table class="table table-dark" [hidden]="!flage">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Email</th>
+          <th scope="col">Contenu</th>
+          <th scope="col">Confirmé</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of mailList;index as i">
+              <th scope="row">{{i+1}}</th>
+              <td>{{item?.writermail}}</td>
+              <td>{{item?.content}}</td>
+              <td *ngIf="item.confirmed">Accepté, félicitations.</td>
+              <td *ngIf="!item.confirmed">Pas encore accepté!</td>
+          </tr>
+      </tbody>
+    </table>
+    <h1 class="mt-4" [hidden]="flage">Aucun email pour vous !!</h1>
+    <div class="text-center" >
+      <button type="button" class="btn btn-outline-dark dark" data-toggle="modal" data-target="#exampleModalLong">Ecrire un nouveau mail</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Rédigez un nouvel e-mail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group green-border-focus">
+              <label for="exampleFormControlTextarea5">Ecrire ici</label>
+              <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" #content></textarea>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" (click)="addMail()">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</div>

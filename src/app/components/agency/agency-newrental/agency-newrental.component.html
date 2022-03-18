@@ -1,0 +1,43 @@
+<div>
+    <app-agency-navbar></app-agency-navbar>
+    <br><br><br>
+    <div class="container m-4 text-justify" dir="auto">
+        <form #frm="ngForm" (ngSubmit)="addNewRental()">
+            <div class="form-group">
+                <label for="Start">Date de début:</label>
+                <input type="text" class="form-control" aria-describedby="helpId" #Start="ngModel"
+                    [class.is-invalid]="Start.invalid && Start.touched" [(ngModel)]="newRental.startdate" id="Start"
+                    minlength="2" name="Name" [class.is-valid]="Start.valid" #startdate>
+            </div>
+            <div class="form-group">
+                <label for="Return">Date de retour:</label>
+                <input type="text" class="form-control" aria-describedby="helpId" #Return="ngModel"
+                    [class.is-invalid]="Return.invalid && Return.touched" [(ngModel)]="newRental.enddate" id="Return"
+                    minlength="2" name="Brand" [class.is-valid]="Return.valid" #enddate>
+            </div>
+            <div class="form-group">
+                <label for="inputState">Sélire la plaque d'immatriculation de la voiture</label>
+                <select id="inputState" class="form-control" #car_id>
+                    <option *ngFor="let item of car_idList;" [value]="item.id">{{item?.plate_number}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="type_of_contract">Type de contrat</label>
+                <select id="type_of_contract" class="form-control" #type_of_contract>
+                    <option value="Partenaire">Partenaire</option>
+                    <option value="Abonnement">Abonnement</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="customer_type">Type de client</label>
+                <select id="customer_type" class="form-control" #customer_type>
+                    <option value="Client de l'agence">Client de l'agence</option>
+                    <option value="Client du site">Client du site</option>
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-dark" [disabled]="frm.invalid" type="submit">Ajouté</button>
+            </div>
+        </form>
+    </div>
+</div>

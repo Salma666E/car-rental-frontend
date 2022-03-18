@@ -1,0 +1,11 @@
+.dark{
+    padding: 5px;
+    width: 350px;
+    border: black solid;
+    border-radius: 50px;
+    box-shadow: 2px;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}
+.dark:hover{color: black;background: white;}

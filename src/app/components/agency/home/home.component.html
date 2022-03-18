@@ -1,0 +1,125 @@
+<div>
+    <app-agency-navbar></app-agency-navbar>
+    <br><br><br>
+    <div class="text-center mt-4">
+        <h1 class="head">Système de location de voitures</h1>
+    </div>
+    <h2 class="mx-3">Rapide et abordable</h2>
+    <div id="demo" class="carousel slide m-4" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let item of carList;index as i" [ngClass]="{'active': i == 0 }">
+                <img [src]="item.car_image" alt="item.name" width="100%" height="350">
+                <div class="carousel-caption">
+                    <div class="row">
+                        <div class="col row">
+                            <h1 class="col-12">{{item.name}}</h1>
+                            <h2 class="col-12">{{item.price}}/Jour</h2>
+                            <input type="text" readonly value="item.price" hidden #amount>
+                        </div>
+                        <div class="col row">
+                            <h1 class="col-12">{{item.car_model}}</h1>
+                            <h4 class="col-12">{{item.car_brand}}</h4>
+                            <h4 class="col-12">Catégorie: {{item.category}}</h4>
+                        </div>
+                    </div>
+                    <button type="button" id="paypal-checkout-btn" class="btn btn-success w-50"
+                    data-toggle="modal" data-target="#myModal2"
+                        (click)="book(item)">Reserve à présent</button>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <!-- Cards -->
+    <div class="cardView">
+        <div class="ml-4">
+            <h3>Liste de voitures:</h3>
+        </div>
+        <div class="container">
+            <div class="card bg-info text-white mb-2" *ngFor="let item of carList;index as i">
+                <div class="card-body row">
+                    <div class="col-2 text-center">
+                        <h2>{{item.name}}</h2>
+                    </div>
+                    <div class="col-4 text-center">
+                        <img [src]="item.car_image" width="150">
+                        <h5 class="mt-1" (click)="details(item)" data-toggle="modal" data-target="#myModal">Détails de la voiture
+                        </h5>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="row">
+                            <p class="col-12">{{item.price}}/Jour</p>
+                            <p class="col-12 text-danger">{{item.car_model}}</p>
+                            <p class="col-12">{{item.car_brand}}</p>
+                        </div>
+                    </div>
+                    <div class="col-2 text-center">
+                        <button type="button" class="btn btn-danger"
+                        data-toggle="modal" data-target="#myModal2"
+                        (click)="book(item)">Reserve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+                <div id="myPaypalBtn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">{{temp.name}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div><img [src]="temp.car_image" class="w-100"></div>
+                <div class="row">
+                    <p class="col-6"><span>Prix: </span>{{temp.price}}</p>
+                    <p class="col-6"><span>Numéro de la plaque: </span>{{temp.plate_number}}</p>
+                    <p class="col-6"><span>Modèle: </span>{{temp.car_model}}</p>
+                    <p class="col-6"><span>Marque: </span>{{temp.car_brand}}</p>
+                    <p class="col-12"><span>Description: </span>{{temp.description}}</p>
+                    <p class="col-6"><span>Numéro disponible: </span>{{temp.available_num}}</p>
+                    <p class="col-6"><span>Marqué: </span>{{temp.marked}}</p>
+                    <p class="col-6"><span>Version: </span>{{temp.version}}</p>
+                    <p class="col-6"><span>Identifier le numéro: </span>{{temp.identify_num}}</p>
+                    <p class="col-6"><span>Catégorie: </span>{{temp.category}}</p>
+                    <p class="col-6"><span>Capacité: </span>{{temp.capacity}}</p>
+                    <p class="col-6"><span>Prix ​​du GPS: </span>{{temp.gps_price}}</p>
+                    <p class="col-6"><span>Prix ​​de l'airbag: </span>{{temp.airbag_price}}</p>
+                    <p class="col-6"><span>Prix ​​de la climatisation: </span>{{temp.air_conditioning_price}}</p>
+                    <p class="col-6"><span>Prix ​​du siège enfant: </span>{{temp.child_seat_price}}</p>
+                    <p class="col-6"><span>Prix ​​du lecteur Cd: </span>{{temp.cd_player_price}}</p>
+                    <p class="col-6"><span>Prix ​​du siège bébé: </span>{{temp.baby_seat_price}}</p>
+                    <p class="col-6"><span>Porte-skis: </span>{{temp.ski_rack}}</p>
+                    <p class="col-6"><span>Taux: </span>{{temp.rate}}</p>
+                    <p class="col-12"><span>Rendez-vous Circu: </span>{{temp.date_first_circulation}}</p>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+            </div>
+
+        </div>
+    </div>
+</div>

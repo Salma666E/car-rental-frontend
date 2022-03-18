@@ -1,0 +1,68 @@
+<div>
+    <app-agency-navbar></app-agency-navbar>
+    <br><br><br>
+    <h1>Ajouter un nouveau client</h1>
+    <div class="container mx-4 text-justify" dir="auto">
+        <form #frm="ngForm" (ngSubmit)="addedNew()" class="container mx-4">
+            <div class="form-group">
+                <label for="fulName">Premier nom de famille: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #fulName="ngModel"
+                    [class.is-invalid]="fulName.invalid && fulName.touched" [(ngModel)]="newClient.name" id="fulName"
+                    minlength="2" name="fulName" [class.is-valid]="fulName.valid" #fulName1>
+            </div>
+            <div class="form-group">
+                <label for="inputState">Taper: </label>
+                <select id="inputState" class="form-control" #type1>
+                    <option value="Partenaire">Partenaire</option>
+                    <option value="Abonnement">Abonnement</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Adresse: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #address="ngModel"
+                    [class.is-invalid]="address.invalid && address.touched" [(ngModel)]="newClient.address" id="address"
+                    minlength="2" name="address" [class.is-valid]="address.valid" #address1>
+            </div>
+            <div class="form-group">
+                <label for="contact">Téléphoner: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #contact="ngModel"
+                    [class.is-invalid]="contact.invalid && contact.touched" [(ngModel)]="newClient.contact" id="contact"
+                    minlength="2" name="contact" [class.is-valid]="contact.valid" #phone1>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #email="ngModel"
+                    [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="newClient.email" id="email"
+                    minlength="2" name="email" [class.is-valid]="email.valid" #email1>
+            </div>
+            <div class="form-group">
+                <label for="cin">Numéro CIN: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #cin="ngModel"
+                    [class.is-invalid]="cin.invalid && cin.touched" [(ngModel)]="newClient.cin" id="cin" minlength="2"
+                    name="cin" [class.is-valid]="cin.valid" #cin1>
+            </div>
+            <div class="form-group">
+                <label for="inputState">Plaque d'immatriculation de voiture:</label>
+                <select id="inputState" class="form-control" #car_id>
+                    <option *ngFor="let item of car_idList;" [value]="item.id">{{item?.plate_number}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="startdate">Date de départ: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #startdate="ngModel"
+                    [class.is-invalid]="startdate.invalid && startdate.touched" [(ngModel)]="newRental.startdate"
+                    id="startdate" minlength="2" name="startdate" [class.is-valid]="startdate.valid" #start_date1>
+            </div>
+            <div class="form-group">
+                <label for="enddate">Date de retour: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #enddate="ngModel"
+                    [class.is-invalid]="enddate.invalid && enddate.touched" [(ngModel)]="newRental.enddate" id="enddate"
+                    minlength="2" name="enddate" [class.is-valid]="enddate.valid" #end_date1>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-success w-25 mb-4 mr-4" [disabled]="frm.invalid" type="submit">Soumettre</button>
+                <button class="btn btn-dark w-25 mb-4" type="reset">Réinitialiser</button>
+            </div>
+        </form>
+    </div>
+</div>

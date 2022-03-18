@@ -1,0 +1,11 @@
+ul li {
+    display: inline-block;
+    color: white;
+    font-weight: 500;
+}
+ul li:first-child{color: yellow;}
+ul li a{
+    cursor: pointer;
+}
+.col .form-group label{color: darkviolet; font-weight: 600;}
+#trSearch td{color: darkviolet;}

@@ -1,0 +1,33 @@
+// .head{
+//     background: url('https://cdn.gobankingrates.com/wp-content/uploads/2015/04/kia_forte_koup.jpg');
+//     height: 380px;
+//     width: 100%;
+//     margin: auto;
+//     background-size: cover;
+//     background-attachment: fixed;
+//     background-position: center;
+//     background-repeat: no-repeat;
+// }
+.carousel-item img{width: 100%;height: 300px; margin-left: 20px; margin-right: 20px;}
+.right{
+    background: #beb8b82a;
+    color: white;
+    margin-top: 55px;
+    padding-left: 25px;
+    padding: auto;
+    margin: auto;
+    font-size: 22px;
+}
+.right h5{color: rgba(255, 255, 255, 0.897);}
+.right p{color: white;font-weight: lighter;}
+// Start search section
+.search{
+    background: rgb(218, 217, 217);
+    width: 100%;
+    margin: auto;
+    padding: 16px;
+}
+select,input{margin-left: 52px;width: 200px;}
+button{margin: auto;
+    width: 200px;}
+.sbtn{align-self: center;}

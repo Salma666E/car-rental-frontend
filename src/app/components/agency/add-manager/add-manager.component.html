@@ -1,0 +1,43 @@
+<div>
+    <app-agency-navbar></app-agency-navbar>
+    <br><br><br>
+    <h1>Ajouter un nouveau ResDirecteur</h1>
+    <div class="container mx-4 text-justify" dir="auto">
+        <form #frm="ngForm" (ngSubmit)="addedNew()" class="container mx-4">
+            <div class="form-group">
+                <label for="email">E-mail: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #email="ngModel"
+                    [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="newManager.email" id="email"
+                    minlength="2" name="email" [class.is-valid]="email.valid" #email1>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #password="ngModel"
+                    [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="newManager.password"
+                    id="password" minlength="2" name="password" [class.is-valid]="password.valid" #password1>
+            </div>
+            <div class="form-group">
+                <label for="address">Adresse: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #address="ngModel"
+                    [class.is-invalid]="address.invalid && address.touched" [(ngModel)]="newManager.address" id="address"
+                    minlength="2" name="address" [class.is-valid]="address.valid" #address1>
+            </div>
+            <div class="form-group">
+                <label for="contact">Téléphoner: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #contact="ngModel"
+                    [class.is-invalid]="contact.invalid && contact.touched" [(ngModel)]="newManager.contact" id="contact"
+                    minlength="2" name="contact" [class.is-valid]="contact.valid" #phone1>
+            </div>
+            <div class="form-group">
+                <label for="name">Des noms: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #name="ngModel"
+                    [class.is-invalid]="name.invalid && name.touched" [(ngModel)]="newManager.name" id="name"
+                    minlength="2" name="name" [class.is-valid]="name.valid" #name1>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-success w-25 mb-4 mr-4" [disabled]="frm.invalid" type="submit">Soumettre</button>
+                <button class="btn btn-dark w-25 mb-4" type="reset">Réinitialiser</button>
+            </div>
+        </form>
+    </div>
+</div>

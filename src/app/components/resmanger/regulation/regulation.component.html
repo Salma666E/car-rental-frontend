@@ -1,0 +1,90 @@
+<div>
+    <app-navbar-resmanager></app-navbar-resmanager>
+    <br><br><br>
+    <div class="navbar navbar-dark bg-dark">
+        <ul class="mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="Save()">Enregistrer la facture</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="Add()">Ajouter une facture</a>
+            </li>
+        </ul>
+    </div>
+    <div id="Informations" #Informations>
+        <div class="container m-2 text-justify">
+            <form #frm="ngForm" (ngSubmit)="savePrice()">
+                <div class="form-group">
+                    <label class="label" for="numRepaire">Nombre de véhicule de réparation: </label>
+                    <input type="number" required
+                    [class.is-invalid]="numRepaire.invalid && numRepaire.touched" [class.is-valid]="numRepaire.valid"
+                    minlength="1" #numRepaire="ngModel"
+                    [(ngModel)]="nowHist.num_of_vehicle"
+                     aria-describedby="helpId" name="numRepaire" class="form-control form-controlFont" id="numRepaire" placeholder="Entrez le numéro de réparation ici">
+                </div>
+                <div class="form-group">
+                    <label class="label" for="amountRepaire">Montant de la réparation: </label>
+                    <input type="number" required
+                    [class.is-invalid]="amountRepaire.invalid && amountRepaire.touched" [class.is-valid]="amountRepaire.valid"
+                    minlength="1" #amountRepaire="ngModel"
+                    [(ngModel)]="nowHist.repaire_amount"
+                     aria-describedby="helpId" name="amountRepaire" class="form-control form-controlFont" id="amountRepaire" placeholder="Entrez le montant de la réparation ici">
+                </div>
+                <div class="form-group">
+                    <label class="label" for="desc">Description: </label>
+                    <input type="text" required
+                    [class.is-invalid]="desc.invalid && desc.touched" [class.is-valid]="desc.valid"
+                    minlength="2" #desc="ngModel"
+                    [(ngModel)]="nowHist.description"
+                     aria-describedby="helpId" name="desc" class="form-control form-controlFont" id="desc">
+                </div>
+                <div class="form-group">
+                    <label class="label" for="Copy">Copie du véhicule: </label>
+                    <input type="file" class="form-control form-controlFont" id="Copy">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-dark w-50" [disabled]="frm.invalid" type="submit">Économisez le prix</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="Management" #Management>
+        <div class="container m-2 text-justify">
+            <form #frm2="ngForm" (ngSubmit)="addHist()">
+                <div class="form-group">
+                    <label for="num_of_vehicle">Num_de_véhicule</label>
+                    <input type="number" class="form-control ml-4" aria-describedby="helpId" #num_of_vehicle="ngModel"
+                        [class.is-invalid]="num_of_vehicle.invalid && num_of_vehicle.touched" [(ngModel)]="newHist.num_of_vehicle"
+                        id="num_of_vehicle" minlength="2" name="Name" [class.is-valid]="num_of_vehicle.valid">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control ml-4" aria-describedby="helpId" #description="ngModel"
+                        [class.is-invalid]="description.invalid && description.touched" [(ngModel)]="newHist.description"
+                        id="description" minlength="2" name="description" [class.is-valid]="description.valid">
+                </div>
+                <div class="form-group">
+                    <label for="repaire_amount">Montant_la_réparation</label>
+                    <input type="number" class="form-control ml-4" aria-describedby="helpId" #repaire_amount="ngModel"
+                        [class.is-invalid]="repaire_amount.invalid && repaire_amount.touched" [(ngModel)]="newHist.repaire_amount"
+                        id="repaire_amount" minlength="2" name="repaire_amount" [class.is-valid]="repaire_amount.valid">
+                </div>
+                <div class="form-group">
+                    <label for="name_garage_managers">Noms_de_garage</label>
+                    <input type="text" class="form-control ml-4" aria-describedby="helpId" #name_garage_managers="ngModel"
+                        [class.is-invalid]="name_garage_managers.invalid && name_garage_managers.touched" [(ngModel)]="newHist.name_garage_managers"
+                        id="name_garage_managers" minlength="2" name="name_garage_managers" [class.is-valid]="name_garage_managers.valid">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="text" class="form-control ml-4" aria-describedby="helpId" #date="ngModel"
+                        [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="newHist.date"
+                        id="date" minlength="2" name="date" [class.is-valid]="date.valid">
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-dark" [disabled]="frm2.invalid" type="submit">Sauvegarder les modifications</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

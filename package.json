@@ -19,6 +19,10 @@
     "@angular/platform-browser": "~11.2.13",
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
+    "angular-rave": "^3.0.0",
+    "creditcardpayments": "^1.0.3",
+    "ngx-paypal": "^7.0.0",
+    "ngx-print": "^1.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

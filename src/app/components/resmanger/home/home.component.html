@@ -1,0 +1,141 @@
+<div>
+    <app-navbar-resmanager></app-navbar-resmanager>
+    <br><br><br>
+    <div class="navbar navbar-dark bg-dark">
+        <ul class="mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="ListDIV()">Liste des véhicules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="AddDIV()">Ajouter une opération de réparation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="SearchDIV()">Opération de recherche</a>
+            </li>
+        </ul>
+    </div>
+    <div id="List" #List>
+        <div class="container my-2 text-justify">
+            <table class="table table-hover table-dark" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Véhicule</th>
+                        <th scope="col">Marché</th>
+                        <th scope="col">Modèle</th>
+                        <th scope="col">Opération_à_effectuer<i class="ml-2 fas fa-arrow-circle-down"></i></th>
+                        <th scope="col">Garage</th>
+                        <th scope="col">Opt<i class="ml-2 fas fa-arrow-circle-down"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of repairList; index as i;">
+                        <th scope="row">{{i+1}}</th>
+                        <td class="text-truncate">{{item?.car_name}}</td>
+                        <td>{{item?.car_marked}}</td>
+                        <td>{{item?.car_mdl}}</td>
+                        <td>{{item?.operations_description}}</td>
+                        <td>{{item?.garage_name}}</td>
+                        <td> <i class="fas fa-file-invoice" (click)="AddDIV()"></i><span class="ml-1">Demande de réparation</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="Add" #Add>
+        <div class="container m-4 text-justify">
+            <div class="container m-4 text-justify" dir="auto">
+                <form #frm="ngForm" (ngSubmit)="addRepair()">
+                    <div class="form-group">
+                        <label for="car_name">Numéro de la plaque</label>
+                        <select id="car_name" class="form-control" [(ngModel)]="newRepairing.car_name"
+                            name="car_name" #car_name="ngModel" #plate_number>
+                            <option *ngFor="let item of getRepairingList;">{{item?.plate_number}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="car_marked">Marqué</label>
+                        <input type="text" required class="form-control" aria-describedby="helpId" #car_marked="ngModel"
+                            [class.is-invalid]="car_marked.invalid && car_marked.touched"
+                            [(ngModel)]="newRepairing.car_marked" id="car_marked" minlength="2" name="car_marked"
+                            [class.is-valid]="car_marked.valid" #marked>
+                    </div>
+                    <div class="form-group">
+                        <label for="car_model">Modèle</label>
+                        <input type="text" required class="form-control" aria-describedby="helpId" #car_model="ngModel"
+                            [class.is-invalid]="car_model.invalid && car_model.touched"
+                            [(ngModel)]="newRepairing.car_mdl" id="car_model" minlength="2" name="car_model"
+                            [class.is-valid]="car_model.valid" #car_mdl>
+                    </div>
+                    <div class="form-group">
+                        <label for="caroperations_description">Description Opérations</label>
+                        <input type="text" required class="form-control" aria-describedby="helpId"
+                            #caroperations_description="ngModel"
+                            [class.is-invalid]="caroperations_description.invalid && caroperations_description.touched"
+                            [(ngModel)]="newRepairing.operations_description" id="caroperations_description"
+                            minlength="2" name="operations_description"
+                            [class.is-valid]="caroperations_description.valid" #operations_description>
+                    </div>
+                    <div class="form-group">
+                        <label for="garage_name">Nom du garage</label>
+                        <input type="text" required class="form-control" aria-describedby="helpId"
+                            #garage_name="ngModel" [class.is-invalid]="garage_name.invalid && garage_name.touched"
+                            [(ngModel)]="newRepairing.garage_name" id="garage_name" minlength="2" name="garage_name"
+                            [class.is-valid]="garage_name.valid" #garageName>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-dark w-50" [disabled]="frm.invalid" type="submit">Soumettre</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="Search" #Search>
+        <div class="container m-4 text-justify">
+            <div class="row m-4">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="searchByplate_number">Recherche par numéro de plaque d'immatriculation du véhicule</label><br>
+                        <input type="text" class="mx-4 w-50" id="searchByplate_number"
+                            placeholder="Entrez le numéro de plaque d'immatriculation du véhicule" #searchplate_number>
+                        <i class="fas fa-search" (click)="searchByplate_number()"></i>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="searchByGarage">Recherche par garage du véhicule</label><br>
+                        <input type="text" class="mx-4 w-50" id="searchByGarage" placeholder="Entrez le nom du garage"
+                            #searchgarage>
+                        <i class="fas fa-search" (click)="searchByGarage()"></i>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="mx-auto">
+                    <table class="table ml-4 table-hover table-dark" id="data">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Véhicule</th>
+                                <th scope="col">Marché</th>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Opération_à_effectuer<i class="ml-2 fas fa-arrow-circle-down"></i></th>
+                                <th scope="col">Garage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of repairReturn; index as i;">
+                                <th scope="row">{{i+1}}</th>
+                                <td class="text-truncate">{{item?.car_name}}</td>
+                                <td>{{item?.car_marked}}</td>
+                                <td>{{item?.car_mdl}}</td>
+                                <td>{{item?.operations_description}}</td>
+                                <td>{{item?.garage_name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

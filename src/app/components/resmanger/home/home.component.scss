@@ -1,0 +1,10 @@
+ul li {
+    display: inline-block;
+    color: white;
+    font-weight: 500;
+}
+ul li:first-child{color: yellow;}
+ul li a{
+    cursor: pointer;
+}
+td i{font-size: 28px;cursor: pointer;}

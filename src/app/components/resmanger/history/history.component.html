@@ -1,0 +1,34 @@
+<div>
+    <app-navbar-resmanager></app-navbar-resmanager>
+    <br><br><br>
+    <div class="container mt-4 table-responsive">
+    <table class="table table-dark" [hidden]="!flage">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Description</th>
+          <th scope="col">Montant_de_la_réparation</th>
+          <th scope="col">Numéro_de_véhicule</th>
+          <th scope="col">Noms_d'équipes</th>
+          <th scope="col">date_de_création</th>
+          <th scope="col">Modifier_ou_supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of histList;index as i">
+              <th scope="row">{{i+1}}</th>
+              <td>{{item?.description}}</td>
+              <td>{{item?.repaire_amount}}</td>
+              <td>{{item?.num_of_vehicle}}</td>
+              <td>{{item?.name_garage_managers}}</td>
+              <td>{{item?.date}}</td>
+              <td> <button type="button" class="btn shadow-none m-2" (click)="deleteAgency(item?.id)">
+                <i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn shadow-none" (click)="goToEdit(item?.id)">
+                <i class="fas fa-edit" aria-hidden="true"></i></button></td>
+          </tr>
+      </tbody>
+    </table>
+</div>
+    <h1 class="mt-4" [hidden]="flage">Aucune histoire pour vous !!</h1>
+</div>

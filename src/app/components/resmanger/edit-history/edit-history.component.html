@@ -1,0 +1,44 @@
+<div>
+    <app-navbar-resmanager></app-navbar-resmanager>
+    <br><br><br>
+    <div class="container m-4 text-justify" dir="auto">
+        <form #frm="ngForm" (ngSubmit)="updateAgency()">
+            <div class="form-group">
+                <label for="numVehicle">Numéro de véhicule: </label>
+                <input type="number" class="form-control" aria-describedby="helpId" #numVehicle="ngModel"
+                    [class.is-invalid]="numVehicle.invalid && numVehicle.touched" [(ngModel)]="newHist.num_of_vehicle"
+                    id="numVehicle" minlength="2" name="numVehicle" [class.is-valid]="numVehicle.valid" #num_of_vehicle>
+            </div>
+            <div class="form-group">
+                <label for="repaire_amountfield">Montant de la réparation: </label>
+                <input type="number" class="form-control" aria-describedby="helpId" #repaire_amountfield="ngModel" name="repaire_amountfield"
+                    [class.is-invalid]="repaire_amountfield.invalid && repaire_amountfield.touched" [(ngModel)]="newHist.repaire_amount"
+                    id="repaire_amountfield" minlength="2"[class.is-valid]="repaire_amountfield.valid" #repaire_amount>
+            </div>
+            <div class="form-group">
+                <label for="Description">Description: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #Description="ngModel" name="Description"
+                    [class.is-invalid]="Description.invalid && Description.touched" [(ngModel)]="newHist.description"
+                    id="Description" minlength="2" [class.is-valid]="Description.valid" #description>
+            </div>
+            <div class="form-group">
+                <label for="name_garage_managersfield">Nom du garage: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #name_garage_managersfield="ngModel"
+                    [class.is-invalid]="name_garage_managersfield.invalid && name_garage_managersfield.touched"
+                    [(ngModel)]="newHist.name_garage_managers" id="name_garage_managersfield" minlength="2"  name="name_garage_managersfield"
+                    [class.is-valid]="name_garage_managersfield.valid" #name_garage_managers>
+            </div>
+            <div class="form-group">
+                <label for="Date">Date: </label>
+                <input type="text" class="form-control" aria-describedby="helpId" #Date="ngModel" name="Date"
+                    [class.is-invalid]="Date.invalid && Date.touched" [(ngModel)]="newHist.date"
+                    id="Date" minlength="2" [class.is-valid]="Date.valid" #date>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-dark" [disabled]="frm.invalid" type="submit">
+                    Sauvegarder les modifications</button>
+            </div>
+        </form>
+
+    </div>
+</div>

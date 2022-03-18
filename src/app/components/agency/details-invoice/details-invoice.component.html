@@ -1,0 +1,63 @@
+<div class="borderClass">
+<div id="print-section">
+  <!--Your html stuff that you want to print-->
+  <!-- <div *ngFor="let item of invoice;index as i"></div> -->
+  <div class="container-fluid">
+    <div class="row p-3">
+      <div class="col"><img src="assets/images/logo.png" width="50%"></div>
+      <div class="col">
+        <h1>Facturer</h1>
+        numéro: <span class="data">{{invoice.number}}</span><br>
+        Date: <span class="data">{{invoice.date}}</span><br>
+        Adresse: <span class="data">{{invoice.address}}</span><br>
+        Email: <span class="data">{{invoice.email_client}}</span>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Numéro de réservation</th>
+            <th scope="col">Durée de la réservation</th>
+            <th scope="col">Voiture de marque</th>
+            <th scope="col">Plaque d'immatriculation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span>{{invoice.reservation_number}}</span></td>
+            <td><span>{{invoice.reservation_duration}}</span></td>
+            <td><span>{{invoice.car_brand}}</span></td>
+            <td><span>{{invoice.car_num_plate}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="container-fluid">
+            <p class="first_div">Facture avec tarifs de location, d'équipement et de réparation:</p>
+            <p>Tarifs de location: <span class="data">{{invoice.rantal_price}}$</span></p>
+            <p>Tarifs d'équipement: <span class="data">{{invoice.equipment_price}}$</span></p>
+            <p>Montant total: <span class="data">{{invoice.total_amount}}$</span></p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="container-fluid bank">
+            <p class="first_div">Paiement dans <span class="data">{{invoice.pay_within_day}}</span> jours dès réception de la facture:</p>
+            <p>Coordonnées bancaires: <span class="data">{{invoice.bank_details}}</span></p>
+            <p>Banque: <span class="data">{{invoice.bank_name}}</span></p>
+            <p>Caissier: <span class="data">{{invoice.bank_teller}}</span></p>
+            <p>Clé: <span class="data">{{invoice.bank_key}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="container-fluid text-center">
+  <button type="button" class="center btn btn-danger print" printSectionId="print-section" ngxPrint printTitle="">Imprimer en PDF</button>
+</div>
+</div>

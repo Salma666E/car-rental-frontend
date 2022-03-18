@@ -1,0 +1,50 @@
+<div>
+    <app-navbar-client></app-navbar-client>
+    <div id="Management" class="container-fluid p-4">
+        <div class=" text-justify" dir="auto">
+            <form #frm="ngForm" (ngSubmit)="addAgency()">
+                <div class="form-group">
+                    <label for="agencyName">Nom: </label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencyName="ngModel"
+                        [class.is-invalid]="agencyName.invalid && agencyName.touched" [(ngModel)]="newClient.name"
+                        id="agencyName" minlength="2" name="Name" [class.is-valid]="agencyName.valid" #name>
+                </div>
+                <div class="form-group">
+                    <label for="agencyEmail">E-mail: </label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencyEmail="ngModel"
+                        [class.is-invalid]="agencyEmail.invalid && agencyEmail.touched" [(ngModel)]="newClient.email"
+                        id="agencyEmail" minlength="2" name="Email" [class.is-valid]="agencyEmail.valid" #email>
+                </div>
+                <div class="form-group">
+                    <label for="agencypass">Mot de passe: </label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencypass="ngModel"
+                        [class.is-invalid]="agencypass.invalid && agencypass.touched" [(ngModel)]="newClient.password"
+                        id="agencypass" minlength="2" name="agencypass" [class.is-valid]="agencypass.valid" #password>
+                </div>
+                <div class="form-group">
+                    <label for="agencyAddress">Adresse: </label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencyAddress="ngModel"
+                        [class.is-invalid]="agencyAddress.invalid && agencyAddress.touched"
+                        [(ngModel)]="newClient.address" id="agencyAddress" minlength="2" name="Addressription"
+                        [class.is-valid]="agencyAddress.valid" #address>
+                </div>
+                <div class="form-group">
+                    <label for="related">Contacter: </label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #related="ngModel"
+                        [class.is-invalid]="related.invalid && related.touched" [(ngModel)]="newClient.contact"
+                        id="related" minlength="2" name="Related" [class.is-valid]="related.valid" #contact>
+                </div>
+                <div class="form-group">
+                    <label for="cin_num">Numéro CIN: </label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #cin_num="ngModel"
+                        [class.is-invalid]="cin_num.invalid && cin_num.touched" [(ngModel)]="newClient.cin"
+                        id="cin_num" minlength="2" name="cin_num" [class.is-valid]="cin_num.valid" #cin>
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-dark" [disabled]="frm.invalid" type="submit">Ajouter un nouveau client</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

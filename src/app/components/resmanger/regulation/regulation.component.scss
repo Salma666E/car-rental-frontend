@@ -1,0 +1,11 @@
+ul li {
+    display: inline-block;
+    color: white;
+    font-weight: 500;
+}
+ul li:first-child{color: yellow;}
+ul li a{
+    cursor: pointer;
+}
+.form-controlFont{margin: auto;margin-left: 7%;margin-right: 5%;}
+.label{font-size: 22px;}

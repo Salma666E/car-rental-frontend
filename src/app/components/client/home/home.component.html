@@ -1,0 +1,125 @@
+<div>
+    <app-navbar-client></app-navbar-client>
+    <br>
+    <div id="demo" class="carousel slide m-4" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let item of carList;index as i" [ngClass]="{'active': i == 0 }">
+                <div class="card mb-2">
+                    <img class="card-img-top" [src]="item.car_image" height="350" [alt]="item.name">
+                    <div class="card-body">
+                        <p class="card-text text-center">Toutes les informations sur: <span>{{item.car_model}}</span></p>
+                        <table class="table table-dark">
+                            <tbody>
+                                <tr>
+                                    <td>Département de la ville: {{item.dep_city}}</td>
+                                    <td>Ville d'ART: {{item.rout_city}}</td>
+                                    <td>Département de la date: </td>
+                                    <td>Date de la décision: </td>
+                                </tr>
+                                <tr>
+                                    <td>Version: {{item.version}}</td>
+                                    <td>Transmission: TDMLFKJD</td>
+                                    <td>Coussin gonflable: {{item.airbag_price}}</td>
+                                    <td>GPS: {{item.gps_price}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Siège bébé: {{item.baby_seat_price}}</td>
+                                    <td>Siège enfant: {{item.child_seat_price}}</td>
+                                    <td>Lecteur CD: {{item.cd_player_price}}</td>
+                                    <td>Porte de ski: {{item.ski_rack}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Climatisation: {{item.air_conditioning_price}}</td>
+                                    <td>NBR Péronne: {{item.capacity}}</td>
+                                    <td>Ville: {{item.dep_city}}</td>
+                                    <td>Agence: HARY</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="card-text text-center">{{item.car_model}} price: <span>{{item.price}}</span></p>
+                        <div class="card-text text-center"><button type="button" class="btn btn-danger"
+                            data-toggle="modal" data-target="#myModal" (click)="book(item)">Reserve maintenant && Valider</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"><i class="fas fa-chevron-left"></i></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"><i class="fas fa-chevron-right"></i></span>
+        </a>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="text-center p-3">
+                <span class="HEAD">Print invoice</span>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>EQUIPMENT</th>
+                    <th>PRICE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>AIR BAG</td>
+                    <td>{{temp.airbag_price}}</td>
+                  </tr>
+                  <tr>
+                    <td>GPS</td>
+                    <td>{{temp.gps_price}}</td>
+                  </tr>
+                  <tr>
+                    <td>AIR CONDATION</td>
+                    <td>{{temp.air_conditioning_price}}</td>
+                  </tr>
+                  <tr>
+                    <td>CHILD SEAT</td>
+                    <td>{{temp.child_seat_price}}</td>
+                  </tr>
+                  <tr>
+                    <td>CD PLAYER</td>
+                    <td>{{temp.cd_player_price}}</td>
+                  </tr>
+                  <tr>
+                    <td>BABY SEAT</td>
+                    <td>{{temp.baby_seat_price}}</td>
+                  </tr>
+                  <tr>
+                    <td>SKI RADK</td>
+                    <td>{{temp.ski_rack}}</td>
+                  </tr>
+                  <tr>
+                    <td>VEHICLE</td>
+                    <td>{{temp.price}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="text-center p-3">
+                <button type="button" class="btn btn-dark w-25 HEAD"
+                data-toggle="modal" data-target="#myModal2"
+                (click)="validate()">OK</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+                <div id="myPaypalBtn"></div>
+            </div>
+        </div>
+    </div>
+</div>

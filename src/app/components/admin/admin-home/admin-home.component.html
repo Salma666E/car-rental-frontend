@@ -1,0 +1,86 @@
+<div>
+    <app-admin-navbar></app-admin-navbar>
+    <br><br><br>
+    <div class="navbar navbar-dark bg-dark">
+        <ul class="mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="informat()">Informations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="management()">Gestion du personnel</a>
+            </li>
+        </ul>
+    </div>
+    <div id="Informations" #Informations>
+        <div class="table-responsive p-4">
+            <table class="table table-hover table-dark" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Booking_num_confirmé</th>
+                        <th scope="col">Booking_num_Non_confirmé</th>
+                        <th scope="col">Nombre_de_voitures_en_panne</th>
+                        <th scope="col">Réglage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of agentList; index as i;">
+                        <th scope="row">{{i+1}}</th>
+                        <td class="text-truncate">{{item?.name}}</td>
+                        <td>{{item?.address}}</td>
+                        <td>{{item?.booking_confirmed}}</td>
+                        <td>{{item?.booking_not_confirmed}}</td>
+                        <td>{{item?.num_brokendown_car}}</td>
+                        <td> <button type="button" class="btn shadow-none m-2" (click)="deleteAgency(item?.id)">
+                            <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button type="button" class="btn shadow-none" (click)="goToEdit(item?.id)">
+                            <i class="fas fa-edit" aria-hidden="true"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="Management" #Management>
+        <div class="container m-4 text-justify" dir="auto">
+            <form #frm="ngForm" (ngSubmit)="addAgency()">
+                <div class="form-group">
+                    <label for="agencyName">Nom</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencyName="ngModel"
+                        [class.is-invalid]="agencyName.invalid && agencyName.touched" [(ngModel)]="newAgency.name"
+                        id="agencyName" minlength="2" name="Name" [class.is-valid]="agencyName.valid" #name>
+                </div>
+                <div class="form-group">
+                    <label for="agencyEmail">E-mail</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencyEmail="ngModel"
+                        [class.is-invalid]="agencyEmail.invalid && agencyEmail.touched" [(ngModel)]="newAgency.email"
+                        id="agencyEmail" minlength="2" name="Email" [class.is-valid]="agencyEmail.valid" #email>
+                </div>
+                <div class="form-group">
+                    <label for="agencypass">Mot de passe</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencypass="ngModel"
+                        [class.is-invalid]="agencypass.invalid && agencypass.touched" [(ngModel)]="newAgency.password"
+                        id="agencypass" minlength="2" name="agencypass" [class.is-valid]="agencypass.valid" #password>
+                </div>
+                <div class="form-group">
+                    <label for="agencyAddress">Adresse</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #agencyAddress="ngModel"
+                        [class.is-invalid]="agencyAddress.invalid && agencyAddress.touched"
+                        [(ngModel)]="newAgency.address" id="agencyAddress" minlength="2" name="Addressription"
+                        [class.is-valid]="agencyAddress.valid" #address>
+                </div>
+                <div class="form-group">
+                    <label for="related">Contacter</label>
+                    <input type="text" required class="form-control" aria-describedby="helpId" #related="ngModel"
+                        [class.is-invalid]="related.invalid && related.touched" [(ngModel)]="newAgency.contact"
+                        id="related" minlength="2" name="Related" [class.is-valid]="related.valid" #contact>
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-dark" [disabled]="frm.invalid" type="submit">Ajouter une nouvelle agence</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
